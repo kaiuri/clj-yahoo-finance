@@ -46,14 +46,14 @@
         body (map #(string/split % del) (rest csv))]
     (mapv #(zipmap head %) body)))
 
-(defn get
+(defn get-historical
   "Takes a dict with the following keys:
     - <stock>: Stock's name (string) as displayed in `finance.yahoo.com`.
     - <period>: PersistentVector tuple of date strings, each in the format \"YYYY-MM-dd\".
     - [frequency]: \"w\"(week), \"d\"(day) or \"m\"(month).
     - [extension]: One of `:clojure`, `:raw`, defaults to `:clojure`.
 
-   Returns CSV string of historical data.
+   Returns historical data in the specified extension.
    "
 
   [{:keys [stock
