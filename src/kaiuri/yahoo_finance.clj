@@ -1,5 +1,6 @@
 (ns kaiuri.yahoo-finance
-  (:require [clojure.string :as string])
+  (:require [clojure.string :as string]
+            [camel-snake-kebab.core :as csk])
   (:import [java.net URLEncoder]
            [java.time LocalDate ZoneId]))
 
@@ -42,15 +43,15 @@
   "
   [s & {:keys [del] :or {del #","}}]
   (let [csv (string/split-lines s)
-        head (map keyword (string/split (first csv) del))
+        head (map #(keyword (csk/->kebab-case %)) (string/split (first csv) del))
         body (map #(string/split % del) (rest csv))]
     (mapv #(zipmap head %) body)))
 
 (defn get-historical
   "Takes a dict with the following keys:
     - <stock>: Stock's name (string) as displayed in `finance.yahoo.com`.
-    - <period>: PersistentVector tuple of date strings, each in the format \"YYYY-MM-dd\".
-    - [frequency]: \"w\"(week), \"d\"(day) or \"m\"(month).
+    - <period>: PersistentVector tuple of date strings, each in the format `YYYY-MM-dd`.
+    - [frequency]: `w`(week), `d`(day) or `m`(month).
     - [extension]: One of `:clojure`, `:raw`, defaults to `:clojure`.
 
    Returns historical data in the specified extension.
