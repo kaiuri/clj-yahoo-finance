@@ -21,7 +21,7 @@ And returns the data.
                          :frequency "d" :extension :clojure})
      (println))
 
-#_=> [{:Date 2021-10-11, :Open 2233.000000, :High 2251.649902, :Low 2220.639893, :Close 2220.639893, :Adj Close 2220.639893, :Volume 2580000000}, ...]
+#_=> [{:date 2021-10-11, :open 2233.000000, :high 2251.649902, :low 2220.639893, :close 2220.639893, :adj-close 2220.639893, :volume 2580000000}, ...]
 ```
 
 ## TODO
