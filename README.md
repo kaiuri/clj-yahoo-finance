@@ -8,10 +8,10 @@ Clojure library for fetching [_yahoo!finance_](finance.yahoo.com) historical dat
 
 `yahoo-finance` provides a single function `get-historical` which takes dict:
 
-- <stock>: Stock's name (string) as displayed in `finance.yahoo.com`.
-- <period>: PersistentVector tuple of date strings, each in the format `YYYY-MM-dd`.
-- [frequency]: String, one of `w`(week), `d`(day) or `m`(month).
-- [extension]: One of `:clojure`, `:raw`, defaults to `:clojure`.
+- `stock`: Stock's name (string) as displayed in `finance.yahoo.com`.
+- `period`: PersistentVector tuple of date strings, each in the format `YYYY-MM-dd`.
+- `[frequency]`: String, one of `w`(week), `d`(day) or `m`(month).
+- `[extension]`: One of `:clojure`, `:raw`, defaults to `:clojure`.
 
 And returns the data.
 
