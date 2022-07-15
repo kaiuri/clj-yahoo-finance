@@ -1,6 +1,6 @@
 (ns kaiuri.yahoo-finance-test
   (:require [clojure.test :refer :all]
-            [kaiuri.yahoo-finance :refer :all]))
+            [kaiuri.clj-yahoo-finance.core :as yf]))
 
 ;; TODO: write tests
 (deftest a-test

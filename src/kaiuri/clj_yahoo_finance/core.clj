@@ -1,4 +1,4 @@
-(ns kaiuri.yahoo-finance
+(ns kaiuri.clj-yahoo-finance.core
   (:require [clojure.string :as string]
             [camel-snake-kebab.core :as csk])
   (:import [java.net URLEncoder]
@@ -71,3 +71,4 @@
       :raw raw-data
       :clojure (csv->clj raw-data)
       :else (csv->clj raw-data))))
+
