@@ -1,6 +1,6 @@
 # yahoo-finance
 
-[![Clojars Project](https://img.shields.io/clojars/v/net.clojars.kaiuri/yahoo-finance.svg)](https://clojars.org/net.clojars.kaiuri/yahoo-finance)
+[![Clojars Project](https://img.shields.io/clojars/v/net.clojars.kaiuri/clj-yahoo-finance.svg)](https://clojars.org/net.clojars.kaiuri/clj-yahoo-finance)
 
 Clojure library for fetching [_yahoo!finance_](finance.yahoo.com) historical data. No HTML parsing.
 
