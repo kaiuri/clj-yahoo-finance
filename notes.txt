@@ -1,8 +1,6 @@
 
 ## Usage
 
-FIXME: write usage documentation!
-
 Invoke a library API function from the command-line:
 
     $ clojure -X kaiuri.yahoo-finance/foo :a 1 :b '"two"'

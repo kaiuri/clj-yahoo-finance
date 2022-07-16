@@ -2,7 +2,7 @@
   (:require
     [clojure.spec.alpha :as s]
     [kaiuri.clj-yahoo-finance.specs]
-    [kaiuri.clj-yahoo-finance.utils :refer [csv->clj gregorian->unix]])
+    [kaiuri.clj-yahoo-finance.utils :refer [csv->clj period->url]])
   (:import
     [java.net URLEncoder]))
 
@@ -14,10 +14,10 @@
            ^clojure.lang.PersistentVector period
            frequency]}]
   (let [stock-chunk (URLEncoder/encode stock)
-        period-chunk (gregorian->unix period)
+        period-url (period->url period)
         frequency-chunk (str \1 frequency)]
     (str "https://query1.finance.yahoo.com/v7/finance/download/" stock-chunk
-         \? period-chunk
+         \? period-url
          "&interval=" frequency-chunk
          "&events=history"
          "&includeAdjustedClose=true")))

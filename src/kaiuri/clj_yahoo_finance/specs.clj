@@ -6,9 +6,11 @@
   (and (string? s)
        (re-matches #"^\d{4}(?:\D\d{2}){2}" s)))
 
+(spec/def :date/format
+  (spec/and string? #(re-matches #"^\d{4}(?:\D\d{2}){2}" %)))
+
 (spec/def :query/period
-  (spec/coll-of time? :kind vector? :count 2 :distinct true
-          :min-count 2 :max-count 2))
+  (spec/coll-of :date/format :kind vector? :count 2 :distinct true))
 
 (spec/def :query/stock string?)
 
