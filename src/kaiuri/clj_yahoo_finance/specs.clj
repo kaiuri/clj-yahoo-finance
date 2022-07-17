@@ -18,8 +18,11 @@
   #(re-matches #"d|w|m" (str %)))
 
 (spec/def :query/extension
-  (spec/and keyword? #(re-matches #"clojure|raw" (name %))))
+  (spec/or :yaml #(re-matches #"yaml" (name %))
+           :csv #(re-matches #"csv" (name %))
+           :clojure #(re-matches #"clojure" (name %))
+           :json #(re-matches #"json" (name %))))
 
 (spec/def :query/query
-  (spec/keys :req-un [:query/stock :query/period
-                      :query/frequency :query/extension]))
+  (spec/keys :req-un [:query/stock :query/period  :query/extension]
+             :opt-un [:query/frequency :query/extension]))

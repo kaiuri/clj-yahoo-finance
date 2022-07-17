@@ -1,8 +1,10 @@
 (ns kaiuri.clj-yahoo-finance.core
   (:require
     [clojure.spec.alpha :as s]
+    [kaiuri.clj-yahoo-finance.parsers
+     :refer [csv->clj csv->yaml csv->json]]
     [kaiuri.clj-yahoo-finance.specs]
-    [kaiuri.clj-yahoo-finance.utils :refer [csv->clj period->url]])
+    [kaiuri.clj-yahoo-finance.utils :refer [period->url]])
   (:import
     [java.net URLEncoder]))
 
@@ -27,7 +29,7 @@
     - <stock>: Stock's name (string) as displayed in `finance.yahoo.com`.
     - <period>: PersistentVector tuple of date strings, each in the format `YYYY-MM-dd`.
     - [frequency]: `w`(week), `d`(day) or `m`(month).
-    - [extension]: One of `:clojure`, `:raw`, defaults to `:clojure`.
+    - [extension]: One of :clojure|:csv|:yaml|:json, defaults to `:clojure`.
 
    Returns historical data in the specified extension.
    "
@@ -39,7 +41,8 @@
 
   {:pre [(s/valid? :query/period period)
          (s/valid? :query/frequency frequency)
-         (s/valid? :query/extension extension)]}
+         (s/valid? :query/extension extension)
+         (s/valid? :query/stock stock)]}
 
   (let [raw-data (->> {:stock stock
                        :period period
@@ -47,6 +50,7 @@
                       (query1-v7)
                       (slurp))]
     (case extension
-      :raw raw-data
+      :csv raw-data
       :clojure (csv->clj raw-data)
-      :else (csv->clj raw-data))))
+      :json (csv->json raw-data)
+      :yaml (csv->yaml raw-data))))
